@@ -5,10 +5,13 @@ import { CreateRecommendationData } from "../../src/services/recommendationsServ
 class RecomendationFactory {
     constructor() {}
 
-    public async createVideo() {
-        const data = this.generateVideoData("youtube");
+    public async createVideo(score?: number) {
+        let data = this.generateVideoData("youtube");
         await prisma.recommendation.create({
-            data,
+            data: {
+                ...data,
+                score,
+            },
         });
         return data;
     }
@@ -18,7 +21,7 @@ class RecomendationFactory {
     ): CreateRecommendationData {
         const youtubeLink =
             padrao === "youtube"
-                ? `https://www.youtube.com/ ${faker.random.alpha()}`
+                ? `https://www.youtube.com/${faker.random.alpha(10)}`
                 : faker.internet.url();
         return {
             name: faker.music.songName(),

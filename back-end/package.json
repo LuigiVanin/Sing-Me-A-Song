@@ -6,7 +6,8 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon src/server.ts",
-        "test": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i"
+        "test:unit": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i",
+        "test:int:dev": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --watch ./test/integration/app.test.ts"
     },
     "keywords": [],
     "author": "",
