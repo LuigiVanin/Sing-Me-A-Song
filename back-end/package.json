@@ -6,8 +6,10 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon src/server.ts",
-        "test:unit": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i",
-        "test:int:dev": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --watch ./test/integration/app.test.ts"
+        "test:int": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --testPathPattern=./test/integration/",
+        "test:int:dev": "dotenv -e .env.test prisma migrate dev && cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --watch ./test/integration/app.test.ts",
+        "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --testPathPattern=./test/unit/",
+        "test:unit:dev": "cross-env NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --watch ./test/unit/recommendation.test.ts"
     },
     "keywords": [],
     "author": "",
