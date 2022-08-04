@@ -1,6 +1,8 @@
+/// <reference types="cypress" />
+
 const { faker } = require("@faker-js/faker");
 
-describe("empty spec", () => {
+describe("Testing upvoting feature", () => {
     beforeEach(() => {
         cy.cleanDb();
     });
@@ -9,7 +11,7 @@ describe("empty spec", () => {
         cy.cleanDb();
     });
 
-    it("passes", () => {
+    it("Should successfully upvote a recommendation", () => {
         const recommendationName = faker.lorem.words(3);
         cy.createRecommendation(recommendationName);
         cy.intercept({

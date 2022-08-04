@@ -2,17 +2,17 @@
 
 const { faker } = require("@faker-js/faker");
 
-describe("Top itens page tests", () => {
+describe("Random feature page tests", () => {
     before(() => {});
 
     afterEach(() => {
         cy.cleanDb();
     });
 
-    it("Should create a recommendation and check at /home if it was created and found", () => {
+    it("Should create a recommendation and go to the /random page", () => {
         const name = faker.lorem.words(4);
         cy.createRecommendation(name);
-        cy.visit("/top");
+        cy.visit("/random");
         cy.contains(name).should("exist");
     });
 });
